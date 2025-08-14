@@ -24,7 +24,7 @@ def main():
 
     AsteroidField()
 
-    Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
         for event in pygame.event.get():
@@ -32,6 +32,11 @@ def main():
                 return
 
         updatable.update(dt)
+
+        for obj in asteroids:
+            if obj.collision_check(player):
+                print("Game over!")
+                return
 
         screen.fill("black")
 
